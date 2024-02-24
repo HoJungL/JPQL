@@ -34,6 +34,7 @@ public class JpqlMain_case {
             em.flush();
             em.clear();
 
+            /* case
             String query =
                     "select" +
                             " case when m.age <=10 then '학생요금'" +
@@ -41,6 +42,14 @@ public class JpqlMain_case {
                             "      else '일반요금'" +
                             "end " +
                     "from Member m";
+            List<String> result = em.createQuery(query, String.class)
+                    .getResultList();
+
+            for (String s : result) {
+                System.out.println("s = " + s);
+            }*/
+
+            String query = "select coalesce(m.username, '이름 없는 회원') from Member m";
             List<String> result = em.createQuery(query, String.class)
                     .getResultList();
 
